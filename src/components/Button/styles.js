@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ButtonContainer = styled.button`
     padding: 20px;
@@ -9,10 +9,8 @@ export const ButtonContainer = styled.button`
     font-weight: 700;
     font-family: 'Roboto', sans-serif;
     flex: 1;
-
+    
     &:hover {
         opacity: 0.6;
     }
-
-
 `
