@@ -6,6 +6,8 @@ import ButtonDouble from './components/ButtonDouble';
 import { Container, Content, Row } from './styles';
 import { useState } from 'react';
 
+import BigNumber from "bignumber.js";
+//import { BigNumber } from "./node_modules/bignumber.js/bignumber.mjs";
 
 const App = () => {
   const [currentNumber, setCurrentNumber] = useState('0');
@@ -54,10 +56,10 @@ const App = () => {
 
 
   const operations = {
-    '+': (a, b) => a + b,
-    '-': (a, b) => a - b,
-    '*': (a, b) => a * b,
-    '/': (a, b) => a / b,
+    '+': (a, b) => a.plus(b),
+    '-': (a, b) => a.minus(b),
+    '*': (a, b) => a.times(b),
+    '/': (a, b) => a.dividedBy(b),
   }
 
   const handleOperations = (oriEqual, operationSign) => {
@@ -70,11 +72,11 @@ const App = () => {
       setNewOperation(true)
     } else {
       if ((isMemClear && oriEqual) || (!oriEqual && !newOperation)) {
-        const result = operations[operationSign](Number(firstNumber), Number(currentNumber));
+        const result = operations[operationSign](BigNumber(firstNumber), BigNumber(currentNumber));
         setCurrentNumber(String(result))
         setIsClear(false)
       } else if (oriEqual) {
-        const result = operations[operationSign](Number(currentNumber), Number(memNumber));
+        const result = operations[operationSign](BigNumber(currentNumber),BigNumber(memNumber));
         setCurrentNumber(String(result))
         setIsClear(false)
       }
@@ -87,7 +89,7 @@ const App = () => {
 
   const handlePercent = (oriEqual) => {
     
-    const result = Number(currentNumber) / 100;
+    const result = BigNumber(currentNumber).dividedBy(100);
     setCurrentNumber(String(result))
     setIsClear(false)
     setFirstNumber('0');
@@ -100,7 +102,7 @@ const App = () => {
 
     if (operation !== '') {
       handleOperations(true, operation)
-      const result = operations[operation](Number(firstNumber), Number(currentNumber));
+      const result = operations[operation](BigNumber(firstNumber), BigNumber(currentNumber));
       if (isMemClear) {
         setMemNumber(currentNumber)
         setIsMemClear(false)
