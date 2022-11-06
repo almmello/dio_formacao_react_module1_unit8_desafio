@@ -12,8 +12,14 @@ const App = () => {
   const [memNumber, setMemNumber] = useState('0');
   const [operation, setOperation] = useState('');
   const [newOperation, setNewOperation] = useState(false);
+  const [isClear, setIsClear] = useState(true);
+  const [isFirstClear, setIsFirstClear] = useState(true);
+  const [isMemClear, setIsMemClear] = useState(true);
 
   const handleOnClear = () => {
+    setIsClear(true)
+    setIsFirstClear(true)
+    setIsMemClear(true)
     setCurrentNumber('0')
     setFirstNumber('0')
     setMemNumber('0')
@@ -24,58 +30,71 @@ const App = () => {
 
   const handleAddNumber = (num) => {
     if (operation === '') {
-      if (currentNumber === '0') {
+      if (isClear) {
         setCurrentNumber(num);
+        setIsClear(false)
       } else {
         setCurrentNumber(currentNumber + '' + num);
+        setIsClear(false)
       }
     } else {
       if (newOperation) {
         setFirstNumber(String(currentNumber));
+        setIsFirstClear(false)
         setCurrentNumber(num);
+        setIsClear(false)
         setNewOperation(false)
       } else {
         setCurrentNumber(currentNumber + '' + num);
+        setIsClear(false)
       }
     }
   }
 
   const handleSumNumbers = (oriEqual) => {
+    setOperation('+')
     if (!oriEqual) {
       setMemNumber('0')
+      setIsMemClear(true)
     }
-    if(firstNumber === '0'){
-        setOperation('+')
+    if(isFirstClear){
         setNewOperation(true)
     } else {
-      if ((memNumber === '0' && oriEqual) || (!oriEqual && !newOperation)) {
+      if ((isMemClear && oriEqual) || (!oriEqual && !newOperation)) {
         const sum = Number(firstNumber) + Number(currentNumber);
         setCurrentNumber(String(sum))
+        setIsClear(false)
       } else if (oriEqual) {
         const sum = Number(currentNumber) + Number(memNumber);
         setCurrentNumber(String(sum))
+        setIsClear(false)
       }
       setFirstNumber('0');
+      setIsFirstClear(true)
       setNewOperation(true)
     }
   }
 
   const handleMinusNumbers = (oriEqual) => {
+    setOperation('-')
     if (!oriEqual) {
       setMemNumber('0')
+      setIsMemClear(true)
     }
-    if(firstNumber === '0'){
-        setOperation('-')
+    if(isFirstClear){
         setNewOperation(true)
     } else {
-      if ((memNumber === '0' && oriEqual) || (!oriEqual && !newOperation)) {
+      if ((isMemClear && oriEqual) || (!oriEqual && !newOperation)) {
         const minus = Number(firstNumber) - Number(currentNumber);
         setCurrentNumber(String(minus))
+        setIsClear(false)
       } else if (oriEqual) {
         const minus = Number(currentNumber) - Number(memNumber);
         setCurrentNumber(String(minus))
+        setIsClear(false)
       }
       setFirstNumber('0');
+      setIsFirstClear(true)
       setNewOperation(true)
     }
   }
@@ -87,18 +106,22 @@ const App = () => {
           case '+':
             handleSumNumbers(true);
             const sum = Number(firstNumber) + Number(memNumber);
-            if (memNumber === '0') {
+            if (isMemClear) {
               setMemNumber(currentNumber)
+              setIsMemClear(false)
             } 
             setFirstNumber(String(sum));
+            setIsFirstClear(false)
             break;
           case '-':
             handleMinusNumbers(true);
             const minus = Number(firstNumber) - Number(memNumber);
-            if (memNumber === '0') {
+            if (isMemClear) {
               setMemNumber(currentNumber)
+              setIsMemClear(false)
             } 
             setFirstNumber(String(minus));
+            setIsFirstClear(false)
             break;
           default: 
             break;
