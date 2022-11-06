@@ -2,12 +2,15 @@
 import Input from './components/Input';
 import Button from './components/Button';
 import ButtonDouble from './components/ButtonDouble';
+import MyImage from './components/MyImage';
 
-import { Container, Content, Row } from './styles';
+import { Container, Content, Head, Row } from './styles';
 import { useState } from 'react';
 
 import BigNumber from "bignumber.js";
 //import { BigNumber } from "./node_modules/bignumber.js/bignumber.mjs";
+
+import LogoSrc from './logo.png';
 
 const App = () => {
   const [currentNumber, setCurrentNumber] = useState('0');
@@ -116,7 +119,11 @@ const App = () => {
 
   return (
     <Container>
+      <Head>
+        <MyImage src={LogoSrc} />
+      </Head>
       <Content>
+        
         <Input value={currentNumber} />
         <Row>
           <ButtonDouble label="C" onClick={handleOnClear} />

@@ -5,14 +5,20 @@ export const Container = styled.div`
     height: 100vh;
     background-color: #374161;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 `
 
+export const Head = styled.div`
+    background-color: transparent;
+    width: 50%;
+`
 
 export const Content = styled.div`
     background-color: #dbe2ea;
     width: 50%;
+    Margin: 50px;
 `
 
 export const Row = styled.div`
