@@ -51,22 +51,30 @@ const App = () => {
     }
   }
 
-  const handleSumNumbers = (oriEqual) => {
-    setOperation('+')
+
+  const operations = {
+    '+': (a, b) => a + b,
+    '-': (a, b) => a - b,
+    '*': (a, b) => a * b,
+    '/': (a, b) => a / b,
+  }
+
+  const handleOperations = (oriEqual, operationSign) => {
+    setOperation(operationSign)
     if (!oriEqual) {
       setMemNumber('0')
       setIsMemClear(true)
     }
-    if(isFirstClear){
-        setNewOperation(true)
+    if (isFirstClear) {
+      setNewOperation(true)
     } else {
       if ((isMemClear && oriEqual) || (!oriEqual && !newOperation)) {
-        const sum = Number(firstNumber) + Number(currentNumber);
-        setCurrentNumber(String(sum))
+        const result = operations[operationSign](Number(firstNumber), Number(currentNumber));
+        setCurrentNumber(String(result))
         setIsClear(false)
       } else if (oriEqual) {
-        const sum = Number(currentNumber) + Number(memNumber);
-        setCurrentNumber(String(sum))
+        const result = operations[operationSign](Number(currentNumber), Number(memNumber));
+        setCurrentNumber(String(result))
         setIsClear(false)
       }
       setFirstNumber('0');
@@ -75,59 +83,19 @@ const App = () => {
     }
   }
 
-  const handleMinusNumbers = (oriEqual) => {
-    setOperation('-')
-    if (!oriEqual) {
-      setMemNumber('0')
-      setIsMemClear(true)
-    }
-    if(isFirstClear){
-        setNewOperation(true)
-    } else {
-      if ((isMemClear && oriEqual) || (!oriEqual && !newOperation)) {
-        const minus = Number(firstNumber) - Number(currentNumber);
-        setCurrentNumber(String(minus))
-        setIsClear(false)
-      } else if (oriEqual) {
-        const minus = Number(currentNumber) - Number(memNumber);
-        setCurrentNumber(String(minus))
-        setIsClear(false)
-      }
-      setFirstNumber('0');
-      setIsFirstClear(true)
-      setNewOperation(true)
-    }
-  }
 
   const handleEquals = () => {
 
-    if(operation !== ''){
-        switch(operation){
-          case '+':
-            handleSumNumbers(true);
-            const sum = Number(firstNumber) + Number(memNumber);
-            if (isMemClear) {
-              setMemNumber(currentNumber)
-              setIsMemClear(false)
-            } 
-            setFirstNumber(String(sum));
-            setIsFirstClear(false)
-            break;
-          case '-':
-            handleMinusNumbers(true);
-            const minus = Number(firstNumber) - Number(memNumber);
-            if (isMemClear) {
-              setMemNumber(currentNumber)
-              setIsMemClear(false)
-            } 
-            setFirstNumber(String(minus));
-            setIsFirstClear(false)
-            break;
-          default: 
-            break;
-        }
+    if (operation !== '') {
+      handleOperations(true, operation)
+      const result = operations[operation](Number(firstNumber), Number(currentNumber));
+      if (isMemClear) {
+        setMemNumber(currentNumber)
+        setIsMemClear(false)
+      }
+      setFirstNumber(String(result));
+      setIsFirstClear(false)
     }
-
   }
 
 
@@ -135,30 +103,30 @@ const App = () => {
   return (
     <Container>
       <Content>
-        <Input value={currentNumber}/>
+        <Input value={currentNumber} />
         <Row>
-          <Button label="x"/>
-          <Button label="/"/>
-          <Button label="c" onClick={handleOnClear}/>
-          <Button label="."/>
+          <Button label="x" onClick={() => handleOperations(false, '*')}/>
+          <Button label="/" onClick={() => handleOperations(false, '/')}/>
+          <Button label="c" onClick={handleOnClear} />
+          <Button label="." />
         </Row>
         <Row>
-          <Button label="7" onClick={() => handleAddNumber('7')}/>
-          <Button label="8" onClick={() => handleAddNumber('8')}/>
-          <Button label="9" onClick={() => handleAddNumber('9')}/>
-          <Button label="-" onClick={() => handleMinusNumbers(false)}/>
+          <Button label="7" onClick={() => handleAddNumber('7')} />
+          <Button label="8" onClick={() => handleAddNumber('8')} />
+          <Button label="9" onClick={() => handleAddNumber('9')} />
+          <Button label="-" onClick={() => handleOperations(false, '-')} />
         </Row>
         <Row>
-          <Button label="4" onClick={() => handleAddNumber('4')}/>
-          <Button label="5" onClick={() => handleAddNumber('5')}/>
-          <Button label="6" onClick={() => handleAddNumber('6')}/>
-          <Button label="+" onClick={() => handleSumNumbers(false)}/>
+          <Button label="4" onClick={() => handleAddNumber('4')} />
+          <Button label="5" onClick={() => handleAddNumber('5')} />
+          <Button label="6" onClick={() => handleAddNumber('6')} />
+          <Button label="+" onClick={() => handleOperations(false, '+')} />
         </Row>
         <Row>
-          <Button label="1" onClick={() => handleAddNumber('1')}/>
-          <Button label="2" onClick={() => handleAddNumber('2')}/>
-          <Button label="3" onClick={() => handleAddNumber('3')}/>
-          <Button label="=" onClick={() => handleEquals()}/>
+          <Button label="1" onClick={() => handleAddNumber('1')} />
+          <Button label="2" onClick={() => handleAddNumber('2')} />
+          <Button label="3" onClick={() => handleAddNumber('3')} />
+          <Button label="=" onClick={() => handleEquals()} />
         </Row>
       </Content>
     </Container>
