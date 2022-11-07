@@ -13,12 +13,14 @@ export const Container = styled.div`
 export const Head = styled.div`
     background-color: transparent;
     width: 50%;
+    max-width: 250px;
 `
 
 export const Content = styled.div`
     background-color: #dbe2ea;
     width: 80%;
     Margin: 50px;
+    max-width: 300px;
 `
 
 export const Row = styled.div`
