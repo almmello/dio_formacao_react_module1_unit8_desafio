@@ -17,7 +17,7 @@ export const Head = styled.div`
 
 export const Content = styled.div`
     background-color: #dbe2ea;
-    width: 50%;
+    width: 80%;
     Margin: 50px;
 `
 
