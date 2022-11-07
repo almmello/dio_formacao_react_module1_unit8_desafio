@@ -16,6 +16,12 @@ export const Head = styled.div`
     max-width: 250px;
 `
 
+export const Foot = styled.div`
+    background-color: transparent;
+    width: 50%;
+    max-width: 250px;
+`
+
 export const Content = styled.div`
     background-color: #dbe2ea;
     width: 80%;

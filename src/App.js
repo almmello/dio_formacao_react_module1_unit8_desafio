@@ -3,14 +3,16 @@ import Input from './components/Input';
 import Button from './components/Button';
 import ButtonDouble from './components/ButtonDouble';
 import MyImage from './components/MyImage';
+import Text01 from './components/Text01';
 
-import { Container, Content, Head, Row } from './styles';
+import { Container, Content, Foot, Head, Row } from './styles';
 import { useState } from 'react';
 
 import BigNumber from "bignumber.js";
 //import { BigNumber } from "./node_modules/bignumber.js/bignumber.mjs";
 
 import LogoSrc from './logo.png';
+
 
 const App = () => {
   const [currentNumber, setCurrentNumber] = useState('0');
@@ -120,10 +122,9 @@ const App = () => {
   return (
     <Container>
       <Head>
-        <MyImage src={LogoSrc} />
+        <MyImage src={LogoSrc} alt="Goalmoon" href="https://goalmoon.com" />
       </Head>
       <Content>
-        
         <Input value={currentNumber} />
         <Row>
           <ButtonDouble label="C" onClick={handleOnClear} />
@@ -154,6 +155,10 @@ const App = () => {
           <Button label="=" onClick={() => handleEquals()}/>          
         </Row>
       </Content>
+      <Foot>
+        <Text01 valueT="Goalmoon© Copyright 2008-2022" />
+        <Text01 valueT="Developed by " href="https://almmello.com" valueL="almmello" />
+      </Foot>
     </Container>
   );
 }

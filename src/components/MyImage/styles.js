@@ -7,3 +7,11 @@ export const ImageContainer = styled.img`
     background-color: transparent;
 
 `
+
+export const LinkContainer = styled.a`
+    width: 100%;
+    height: auto;
+    border: 0px;
+    background-color: transparent;
+
+`

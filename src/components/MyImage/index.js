@@ -1,8 +1,11 @@
 import { ImageContainer } from './styles';
+import { LinkContainer } from './styles';
 
-const MyImage = ({ src, alt }) => {
+const MyImage = ({ src, alt, href }) => {
   return (
-    <ImageContainer src={src} />
+    <LinkContainer href={href} target="_blank">
+      <ImageContainer src={src} alt={alt}></ImageContainer>
+    </LinkContainer>    
   );
 };
 
