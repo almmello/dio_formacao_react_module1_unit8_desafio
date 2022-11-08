@@ -1,70 +1,95 @@
-# Getting Started with Create React App
+# React Calculator
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Motivation for the project
 
-In the project directory, you can run:
+This project was a challenge of DIO React Developer Training.
+https://web.dio.me/track/formacao-react-developer
 
-### `yarn start`
+I recorded my development through commits so that you can follow along.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Please let me know if you find any issues with this project.
 
-The page will reload when you make changes.\
+
+## Initial Code
+
+This project was bootstrapped with Create React App (https://github.com/facebook/create-react-app), and I started with a working calculator with limited operations; only addition and subtraction were present in the startup code.
+
+Here is the startup code:
+https://github.com/digitalinnovationone/trilha-react-desafio01-calculadora
+
+
+## Reference
+
+During the development, I used the following references to build the React Calculator app:
+
+https://styled-components.com/docs/basics
+https://stackoverflow.com/questions/42395144/how-to-horizontally-invert-the-input-type-text-for-calculator
+https://github.com/MikeMcl/bignumber.js
+
+
+## URL location for the hosted Calculator
+
+https://gmoo.com.br
+
+
+## My Version
+
+1. I changed the  "handleSumNumbers", "handleMinusNumber", and "handleEquals" methods.
+- I did a new design with my color pallet and styles.
+- The Calculator can hold the number when we press the operation symbol.
+- The equal sign creates a continuous operation loop.
+- After an operation, if we type another operation sign, the Calculator performs another calculation indefinitely.
+
+2. Fixed the reaching zero on calculations issue.
+- Because the program used the number zero on its code to perform calculations, there was an issue when the operation result was equal to zero.
+- I created separate variables to control the initial state of variables and avoid this issue.
+
+3. Refactored the "handleSum" and "handleMinus" to a unique "handleOperation" method.
+- When I introduced the other operations, I redesigned the "handleSum" to a flexible method to perform any calculations and avoid duplicated code.
+- I optimized the "handleEquals" method, removing the switch expression.
+- I introduced a new method to calculate the percentage.
+
+4. Used BigNumbers to fix decimal calculation.
+- To fix the precision issue on decimal calculations, I used the "BigNumber" library.
+
+
+## Key Dependencies
+
+- Styled Components: https://styled-components.com/
+Styled components are React components that allow you to style your components using CSS. You can define styled components inside your React component file or create a separate one.
+
+
+# Installing Dependencies
+
+
+## Styled Components
+
+```
+yarn add styled-components
+```
+
+
+## Running the server locally
+
+In the project directory, you can run the following:
+
+```
+npm start
+```
+
+It runs the app in development mode.
+Open http://localhost:3000 to view it in your browser.
+
+The page will reload when you make changes.
 You may also see any lint errors in the console.
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Authors
 
-### `yarn build`
+-Alexandre Monteiro de Mello
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Acknowledgments
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+-DIO - https://web.dio.me/
