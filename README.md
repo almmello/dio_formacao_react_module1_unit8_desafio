@@ -23,9 +23,9 @@ https://github.com/digitalinnovationone/trilha-react-desafio01-calculadora
 
 During the development, I used the following references to build the React Calculator app:
 
-https://styled-components.com/docs/basics
-https://stackoverflow.com/questions/42395144/how-to-horizontally-invert-the-input-type-text-for-calculator
-https://github.com/MikeMcl/bignumber.js
+- https://styled-components.com/docs/basics
+- https://stackoverflow.com/questions/42395144/how-to-horizontally-invert-the-input-type-text-for-calculator
+- https://github.com/MikeMcl/bignumber.js
 
 
 ## URL location for the hosted Calculator
