@@ -1,5 +1,7 @@
 # React Calculator
 
+## Description
+A simple web app calculator made with React and Styled Components to support basic mathematical operations, including addition, subtraction, multiplication, and division. This project is part of the DIO React Developer Training program.
 
 ## Motivation for the project
 
