@@ -2,16 +2,16 @@
 
 ## ✅ Atualização Concluída
 
-Este projeto foi atualizado para usar **Node.js 18.x** em vez da versão descontinuada 16.x.
+Este projeto foi atualizado para usar **Node.js 22.x** (versão LTS mais recente) em vez da versão descontinuada 16.x.
 
 ## 📋 Arquivos Criados/Modificados:
 
 ### 1. `.nvmrc` e `.node-version`
-- Especificam a versão do Node.js 18.19.0 (LTS)
+- Especificam a versão do Node.js 22.19.0 (LTS mais recente)
 - Compatível com a maioria das plataformas de deploy
 
 ### 2. `package.json`
-- Adicionada seção `engines` especificando Node.js >=18.0.0
+- Adicionada seção `engines` especificando Node.js 22.x
 - Dependências atualizadas para versões mais recentes:
   - `@testing-library/*` atualizado para v14+
   - `styled-components` atualizado para v6+
@@ -19,8 +19,8 @@ Este projeto foi atualizado para usar **Node.js 18.x** em vez da versão descont
 
 ### 3. `vercel.json`
 - Configuração específica para a Vercel
-- Especifica runtime Node.js 18.x
-- Configurações de build otimizadas
+- Framework configurado como Vite
+- Build otimizado para produção
 
 ## 🚀 Como Executar:
 
@@ -37,15 +37,16 @@ npm run build
 
 ## 🌐 Deploy na Vercel:
 
-1. **Configurações do Projeto**: A versão do Node.js será automaticamente detectada como 18.x
-2. **Build**: O projeto usará Node.js 18.x para compilação
-3. **Runtime**: As funções serverless usarão Node.js 18.x
+1. **Configurações do Projeto**: A versão do Node.js será automaticamente detectada como 22.x
+2. **Build**: O projeto usará Node.js 22.x para compilação
+3. **Runtime**: As funções serverless usarão Node.js 22.x
 
 ## ⚠️ Notas Importantes:
 
-- **Compatibilidade**: Todas as dependências são compatíveis com Node.js 18+
+- **Compatibilidade**: Todas as dependências são compatíveis com Node.js 22+
 - **Performance**: Melhor performance e segurança com a versão mais recente
-- **Suporte**: Node.js 18.x é suportado até abril de 2025
+- **Suporte**: Node.js 22.x é a versão LTS atual e será suportada por muito tempo
+- **Vercel**: Totalmente compatível com a versão padrão atual da Vercel
 
 ## 🔧 Verificação:
 
@@ -63,4 +64,4 @@ npm run build
 ```
 
 ## 📅 Data da Atualização:
-Janeiro 2025 - Atualização para Node.js 18.x LTS
+Janeiro 2025 - Atualização para Node.js 22.x LTS (versão mais recente)
