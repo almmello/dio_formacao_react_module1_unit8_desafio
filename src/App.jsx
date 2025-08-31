@@ -1,11 +1,11 @@
 
-import Input from './components/Input';
-import Button from './components/Button';
-import ButtonDouble from './components/ButtonDouble';
-import MyImage from './components/MyImage';
-import Text01 from './components/Text01';
+import Input from './components/Input/index.jsx';
+import Button from './components/Button/index.jsx';
+import ButtonDouble from './components/ButtonDouble/index.jsx';
+import MyImage from './components/MyImage/index.jsx';
+import Text01 from './components/Text01/index.jsx';
 
-import { Container, Content, Foot, Head, Row } from './styles';
+import { Container, Content, Foot, Head, Row } from './styles.js';
 import { useState } from 'react';
 
 import BigNumber from "bignumber.js";
