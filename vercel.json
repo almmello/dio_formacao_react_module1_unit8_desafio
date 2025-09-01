@@ -1,13 +1,8 @@
 {
-  "buildCommand": "chmod +x vercel-build.sh && ./vercel-build.sh",
+  "buildCommand": "yarn run build",
   "outputDirectory": "dist",
   "installCommand": "yarn install",
   "framework": "vite",
-  "functions": {
-    "dist/**/*.js": {
-      "maxDuration": 10
-    }
-  },
   "headers": [
     {
       "source": "/assets/(.*)",
@@ -18,8 +13,5 @@
         }
       ]
     }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  }
+  ]
 }
