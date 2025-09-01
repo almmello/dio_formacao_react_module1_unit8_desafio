@@ -1,0 +1,15 @@
+# Ignorar arquivos de cache
+.cache
+.parcel-cache
+.vite
+
+# Ignorar builds anteriores
+build/
+dist/
+
+# Ignorar node_modules (será reinstalado)
+node_modules/
+
+# Ignorar arquivos de lock que podem causar conflitos
+package-lock.json
+yarn.lock
