@@ -1,9 +1,15 @@
 
 import { ButtonContainer } from './styles';
+import { useTouch } from '../../hooks/useTouch';
 
 const Button = ({label, onClick}) => {
+    const touchHandlers = useTouch(onClick);
+
     return (
-      <ButtonContainer onClick={onClick} type="button">
+      <ButtonContainer 
+        {...touchHandlers}
+        type="button"
+      >
        {label}
       </ButtonContainer>
     );

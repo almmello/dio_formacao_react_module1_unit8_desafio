@@ -6,7 +6,8 @@ import MyImage from './components/MyImage/index.jsx';
 import Text01 from './components/Text01/index.jsx';
 
 import { Container, Content, Foot, Head, Row } from './styles.js';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { isMobileDevice, setupMobileViewport, preventZoom } from './utils/deviceDetection.js';
 
 import BigNumber from "bignumber.js";
 //import { BigNumber } from "./node_modules/bignumber.js/bignumber.mjs";
@@ -23,6 +24,18 @@ const App = () => {
   const [isClear, setIsClear] = useState(true);
   const [isFirstClear, setIsFirstClear] = useState(true);
   const [isMemClear, setIsMemClear] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Configurar dispositivo móvel na inicialização
+    const mobile = isMobileDevice();
+    setIsMobile(mobile);
+    
+    if (mobile) {
+      setupMobileViewport();
+      preventZoom();
+    }
+  }, []);
 
   const handleOnClear = () => {
     setIsClear(true)
