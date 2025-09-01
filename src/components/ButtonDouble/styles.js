@@ -1,20 +1,25 @@
 import styled from 'styled-components';
 
 export const ButtonContainer = styled.button`
-    padding: 20px 41px;
+    padding: 0;
     border: 1px solid #ffffff;
     background-color: #C1C6C8;
     color: #54585A;
     font-size: 24px;
     font-weight: 700;
     font-family: 'Roboto', sans-serif;
-    flex: 2;
+    grid-column: span 2;
     cursor: pointer;
     user-select: none;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
     transition: all 0.1s ease-in-out;
     -webkit-tap-highlight-color: transparent;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
     
     &:hover {
         opacity: 0.6;
@@ -27,15 +32,13 @@ export const ButtonContainer = styled.button`
 
     /* Estilos para dispositivos móveis */
     @media (max-width: 768px) {
-        padding: 25px 41px;
         font-size: 28px;
-        min-height: 60px;
+        height: 70px;
         touch-action: manipulation;
     }
 
     @media (max-width: 480px) {
-        padding: 30px 41px;
         font-size: 32px;
-        min-height: 70px;
+        height: 80px;
     }
 `

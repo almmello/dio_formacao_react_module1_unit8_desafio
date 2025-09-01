@@ -58,8 +58,15 @@ export const Foot = styled.div`
 export const Content = styled.div`
     background-color: #dbe2ea;
     width: 80%;
-    Margin: 50px;
+    margin: 50px;
     max-width: 300px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    font-size: 0;
+    box-sizing: border-box;
+    gap: 0;
     
     /* Estilos para dispositivos móveis */
     @media (max-width: 768px) {
@@ -79,18 +86,18 @@ export const Content = styled.div`
 `
 
 export const Row = styled.div`
-    display:flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    height: 60px;
+    box-sizing: border-box;
     
     /* Estilos para dispositivos móveis */
     @media (max-width: 768px) {
-        gap: 2px;
+        height: 70px;
     }
 
     @media (max-width: 480px) {
-        gap: 3px;
+        height: 80px;
     }
 `
 
