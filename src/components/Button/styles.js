@@ -14,7 +14,7 @@ export const ButtonContainer = styled.button`
     -webkit-touch-callout: none;
     transition: all 0.1s ease-in-out;
     -webkit-tap-highlight-color: transparent;
-    height: 60px;
+    height: 90px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,12 +32,12 @@ export const ButtonContainer = styled.button`
     /* Estilos para dispositivos móveis */
     @media (max-width: 768px) {
         font-size: 28px;
-        height: 70px;
+        height: 75px;
         touch-action: manipulation;
     }
 
     @media (max-width: 480px) {
         font-size: 32px;
-        height: 80px;
+        height: 60px;
     }
 `
