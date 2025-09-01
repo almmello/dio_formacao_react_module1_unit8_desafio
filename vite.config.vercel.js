@@ -1,32 +1,23 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vitejs.dev/config/
+// Configuração específica para Vercel
 export default defineConfig({
   plugins: [react()],
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx']
   },
   build: {
-    // Forçar rebuild completo
+    // Configurações otimizadas para Vercel
     emptyOutDir: true,
-    // Configurar cache busting
+    sourcemap: false,
+    minify: 'esbuild', // Usar esbuild para melhor compatibilidade
     rollupOptions: {
       output: {
         manualChunks: undefined,
         entryFileNames: 'assets/[name]-[hash].js',
         chunkFileNames: 'assets/[name]-[hash].js',
         assetFileNames: 'assets/[name]-[hash].[ext]'
-      }
-    },
-    // Configurações de segurança para produção
-    sourcemap: false, // Desabilitar source maps em produção
-    minify: 'esbuild', // Usar esbuild em vez de terser para melhor compatibilidade
-    // Configurações de minificação
-    terserOptions: {
-      compress: {
-        drop_console: true, // Remover console.log em produção
-        drop_debugger: true
       }
     }
   },
@@ -44,7 +35,7 @@ export default defineConfig({
   },
   // Configurações de segurança adicionais
   define: {
-    __DEV__: false, // Desabilitar modo de desenvolvimento em produção
+    __DEV__: false,
     'process.env.NODE_ENV': '"production"'
   }
 })

@@ -1,7 +1,7 @@
 {
   "buildCommand": "yarn run build",
   "outputDirectory": "dist",
-  "installCommand": "yarn install",
+  "installCommand": "yarn install && yarn add --dev terser",
   "framework": "vite",
   "headers": [
     {
