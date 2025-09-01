@@ -1,0 +1,54 @@
+MIT License
+
+Copyright (c) 2024 [Seu Nome]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+## Sobre este Projeto
+
+Este projeto foi desenvolvido como parte do programa de formação React Developer da Digital Innovation One (DIO).
+É uma calculadora moderna construída com React, Vite e Styled Components, implementando recursos avançados
+de segurança e validação de entrada.
+
+### Características Principais:
+- ✅ Interface moderna e responsiva
+- ✅ Operações matemáticas avançadas
+- ✅ Validação rigorosa de entrada
+- ✅ Headers de segurança implementados
+- ✅ Proteção contra ataques XSS
+- ✅ Configurações de build otimizadas
+
+### Tecnologias Utilizadas:
+- React 19.1.1
+- Vite 7.1.2
+- Styled Components 6.1.1
+- BigNumber.js 9.1.2
+- ESLint 9.33.0
+
+### Contribuições:
+Contribuições são bem-vindas! Sinta-se à vontade para:
+- Reportar bugs
+- Sugerir melhorias
+- Enviar pull requests
+- Melhorar a documentação
+
+### Contato:
+Para dúvidas ou sugestões, entre em contato através do GitHub Issues.

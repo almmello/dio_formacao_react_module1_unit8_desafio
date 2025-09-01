@@ -1,20 +1,54 @@
 import BigNumber from "bignumber.js";
 
-// Configuração do BigNumber para maior precisão
+// Configuração do BigNumber para maior precisão e segurança
 BigNumber.config({
   DECIMAL_PLACES: 20,
   ROUNDING_MODE: BigNumber.ROUND_HALF_UP,
-  EXPONENTIAL_AT: [-7, 21]
+  EXPONENTIAL_AT: [-7, 21],
+  // Configurações de segurança
+  CRYPTO: false, // Desabilitar funcionalidades criptográficas
+  MODULO_MODE: BigNumber.ROUND_DOWN
 });
 
-// Validações matemáticas
+// Constantes de segurança
+const MAX_SAFE_NUMBER = 1e15; // Limite máximo para evitar overflow
+const MIN_SAFE_NUMBER = -1e15; // Limite mínimo para evitar underflow
+
+// Validações matemáticas com proteções de segurança
 export const validateNumber = (value) => {
   if (value === null || value === undefined || value === '') {
     return false;
   }
   
-  const num = parseFloat(value);
-  return !isNaN(num) && isFinite(num);
+  // Verificar se é uma string válida
+  if (typeof value === 'string') {
+    // Prevenir injeção de código malicioso
+    if (value.includes('<') || value.includes('>') || value.includes('script')) {
+      return false;
+    }
+    
+    // Verificar se contém apenas caracteres numéricos válidos
+    if (!/^[0-9.-]+$/.test(value)) {
+      return false;
+    }
+  }
+  
+  try {
+    const num = parseFloat(value);
+    if (isNaN(num) || !isFinite(num)) {
+      return false;
+    }
+    
+    // Verificar limites de segurança
+    if (num > MAX_SAFE_NUMBER || num < MIN_SAFE_NUMBER) {
+      return false;
+    }
+    
+    return true;
+  } catch (error) {
+    console.warn('Erro na validação de número:', error);
+    return false;
+  }
 };
 
 export const validateDivision = (divisor) => {
@@ -22,8 +56,13 @@ export const validateDivision = (divisor) => {
     return false;
   }
   
-  const num = new BigNumber(divisor);
-  return !num.isZero();
+  try {
+    const num = new BigNumber(divisor);
+    return !num.isZero();
+  } catch (error) {
+    console.warn('Erro na validação de divisão:', error);
+    return false;
+  }
 };
 
 export const validateSquareRoot = (value) => {
@@ -31,8 +70,13 @@ export const validateSquareRoot = (value) => {
     return false;
   }
   
-  const num = parseFloat(value);
-  return num >= 0;
+  try {
+    const num = parseFloat(value);
+    return num >= 0;
+  } catch (error) {
+    console.warn('Erro na validação de raiz quadrada:', error);
+    return false;
+  }
 };
 
 export const validateInverse = (value) => {
@@ -40,19 +84,36 @@ export const validateInverse = (value) => {
     return false;
   }
   
-  const num = parseFloat(value);
-  return num !== 0;
+  try {
+    const num = parseFloat(value);
+    return num !== 0;
+  } catch (error) {
+    console.warn('Erro na validação de inverso:', error);
+    return false;
+  }
 };
 
-// Funções de cálculo com validação
+// Funções de cálculo com validação e proteções de segurança
 export const safeAdd = (a, b) => {
   if (!validateNumber(a) || !validateNumber(b)) {
     throw new Error('Valores inválidos para adição');
   }
   
-  const first = new BigNumber(a);
-  const second = new BigNumber(b);
-  return first.plus(second).toNumber();
+  try {
+    const first = new BigNumber(a);
+    const second = new BigNumber(b);
+    const result = first.plus(second);
+    
+    // Verificar se o resultado está dentro dos limites seguros
+    if (result.isGreaterThan(MAX_SAFE_NUMBER) || result.isLessThan(MIN_SAFE_NUMBER)) {
+      throw new Error('Resultado fora dos limites seguros');
+    }
+    
+    return result.toNumber();
+  } catch (error) {
+    console.error('Erro na adição segura:', error);
+    throw new Error('Erro no cálculo de adição');
+  }
 };
 
 export const safeSubtract = (a, b) => {
@@ -60,9 +121,21 @@ export const safeSubtract = (a, b) => {
     throw new Error('Valores inválidos para subtração');
   }
   
-  const first = new BigNumber(a);
-  const second = new BigNumber(b);
-  return first.minus(second).toNumber();
+  try {
+    const first = new BigNumber(a);
+    const second = new BigNumber(b);
+    const result = first.minus(second);
+    
+    // Verificar se o resultado está dentro dos limites seguros
+    if (result.isGreaterThan(MAX_SAFE_NUMBER) || result.isLessThan(MIN_SAFE_NUMBER)) {
+      throw new Error('Resultado fora dos limites seguros');
+    }
+    
+    return result.toNumber();
+  } catch (error) {
+    console.error('Erro na subtração segura:', error);
+    throw new Error('Erro no cálculo de subtração');
+  }
 };
 
 export const safeMultiply = (a, b) => {
@@ -70,9 +143,21 @@ export const safeMultiply = (a, b) => {
     throw new Error('Valores inválidos para multiplicação');
   }
   
-  const first = new BigNumber(a);
-  const second = new BigNumber(b);
-  return first.times(second).toNumber();
+  try {
+    const first = new BigNumber(a);
+    const second = new BigNumber(b);
+    const result = first.times(second);
+    
+    // Verificar se o resultado está dentro dos limites seguros
+    if (result.isGreaterThan(MAX_SAFE_NUMBER) || result.isLessThan(MIN_SAFE_NUMBER)) {
+      throw new Error('Resultado fora dos limites seguros');
+    }
+    
+    return result.toNumber();
+  } catch (error) {
+    console.error('Erro na multiplicação segura:', error);
+    throw new Error('Erro no cálculo de multiplicação');
+  }
 };
 
 export const safeDivide = (a, b) => {
@@ -84,9 +169,21 @@ export const safeDivide = (a, b) => {
     throw new Error('Divisão por zero não é permitida');
   }
   
-  const first = new BigNumber(a);
-  const second = new BigNumber(b);
-  return first.dividedBy(second).toNumber();
+  try {
+    const first = new BigNumber(a);
+    const second = new BigNumber(b);
+    const result = first.dividedBy(second);
+    
+    // Verificar se o resultado está dentro dos limites seguros
+    if (result.isGreaterThan(MAX_SAFE_NUMBER) || result.isLessThan(MIN_SAFE_NUMBER)) {
+      throw new Error('Resultado fora dos limites seguros');
+    }
+    
+    return result.toNumber();
+  } catch (error) {
+    console.error('Erro na divisão segura:', error);
+    throw new Error('Erro no cálculo de divisão');
+  }
 };
 
 export const safePercent = (value) => {
@@ -94,8 +191,20 @@ export const safePercent = (value) => {
     throw new Error('Valor inválido para cálculo de porcentagem');
   }
   
-  const num = new BigNumber(value);
-  return num.dividedBy(100).toNumber();
+  try {
+    const num = new BigNumber(value);
+    const result = num.dividedBy(100);
+    
+    // Verificar se o resultado está dentro dos limites seguros
+    if (result.isGreaterThan(MAX_SAFE_NUMBER) || result.isLessThan(MIN_SAFE_NUMBER)) {
+      throw new Error('Resultado fora dos limites seguros');
+    }
+    
+    return result.toNumber();
+  } catch (error) {
+    console.error('Erro no cálculo de porcentagem:', error);
+    throw new Error('Erro no cálculo de porcentagem');
+  }
 };
 
 export const safeSquareRoot = (value) => {
